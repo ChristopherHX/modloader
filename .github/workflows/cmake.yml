@@ -33,7 +33,7 @@ jobs:
         ndk-version: r21e
         add-to-path: true
     - name: Configure
-      run: cmake -B ${{github.workspace}}/build -G Ninja -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_TOOLCHAIN_FILE=${{ steps.setup-ndk.outputs.ndk-path }}/build/cmake/android.toolchain.cmake -DANDROID_ABI=${{ matrix.abi }} "-DCMAKE_CXX_FLAGS=-Wl,--strip-all -fvisibility=hidden"
+      run: cmake -B ${{github.workspace}}/build -G Ninja -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_TOOLCHAIN_FILE=${{ steps.setup-ndk.outputs.ndk-path }}/build/cmake/android.toolchain.cmake -DANDROID_ABI=${{ matrix.abi }} "-DCMAKE_CXX_FLAGS=-Wl,--strip-all -fvisibility=hidden" -DANDROID_PLATFORM=android-21
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}} --target modloader
     
